@@ -67,11 +67,18 @@ describe Array do
 
     end
 
-        describe "#stock_picker" do
+    describe "#stock_picker" do
+        subject(:array) { [150, 30, 2, 50, 70, 100, 80, 120] }
 
-        
+        context "when output is most profitable pair of days" do 
+            it "should first buy the stock and then sell the stock" do 
+                expect(array.stock_picker.first).to be < array.stock_picker.last
+                expect(array.stock_picker).to eq([2, 7])
+            end
 
         end
+
+    end
 
 
 end
