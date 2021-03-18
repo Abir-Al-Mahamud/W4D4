@@ -85,20 +85,21 @@ describe Array do
 end
 
 describe TowersOfHanoi do 
-    subject(:towers) { TowersOfHanoi.new, :stacks => [[3,2,1],[],[]] }
+    subject(:towers) { TowersOfHanoi.new }
     let(:wrong) { [[3],[1,2],[]] }
 
     describe "#initialize" do 
-        context "creates a stacks attribute " do 
+        context "expects no arguments, but creates a stacks attribute" do 
             context "stacks should be a 2-D array" do
+                it "stacks attribute should contain an array of 3 sub-arrays " do
+                    expect(towers.stacks).to eq([[3,2,1],[],[]])
+                end
+
                 it "the first sub-array should have 3, 2, 1 representing discs" do
                     expect(towers.stacks.first).to eq(towers.stacks.first.sort.reverse)
                     expect(towers.stacks.length).to eq(3)
                 end
 
-                it "stacks attribute should contain an array of 3 sub-arrays " do
-                    expect(towers.stacks).to eq([[3,2,1],[],[]])
-                end
             end
         end
         
@@ -108,13 +109,9 @@ describe TowersOfHanoi do
         context "smaller elements can never be below larger elements" do 
             it "should raise error when user tries to put larger element on top of smaller element" do 
                 bool = towers.stacks.all? { |stack| stack.sort.reverse == stack }
-                expect(bool).to be true 
+                # expect(bool).to be true 
                 expect { bool == false }.to raise_error(StandardError)
             end
-        end
-
-        it "should prompt the user (gets)"  do 
-            expect(:move).to receive(gets.chomp)
         end
     end
     

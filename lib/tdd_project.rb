@@ -39,5 +39,39 @@ class Array
         end
         [self.index(pairs[-1].first), self.index(pairs[-1].last)]
     end
+end
 
+class TowersOfHanoi
+    attr_reader :stacks 
+
+    def initialize 
+        @stacks = [[3, 2, 1],[],[]]
+        @max_moves = 9
+    end
+
+    def move
+        while @max_moves != 0 || !won? 
+            begin 
+                puts "Choose an origin stack"
+                origin = gets.chomp.to_i
+                puts "Choose a destination stack"
+                destination = gets.chomp.to_i
+
+                if @stacks[destination].last < @stacks[origin].last
+                    raise StandardError.new("No smaller elements can be below larger elements")
+                end
+
+                @stacks[destination] << @stacks[origin].pop 
+                @max_moves -= 1
+                puts "#{@stacks}"
+            rescue
+                retry
+            end
+        end
+        puts "YOU WON"
+    end
+
+    def won? 
+        @stacks == [[],[],[3, 2, 1]] || @stacks == [[],[3, 2, 1],[]]
+    end
 end
