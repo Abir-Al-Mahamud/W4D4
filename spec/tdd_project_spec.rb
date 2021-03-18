@@ -41,8 +41,37 @@ describe Array do
     end
 
     describe "#my_transpose" do 
-        
-        it ""
+        subject(:array) { [
+                            [0, 1, 2],
+                            [3, 4, 5],
+                            [6, 7, 8]
+                          ] }  
+        let(:cols) {    [
+                            [0, 3, 6],
+                            [1, 4, 7],
+                            [2, 5, 8]
+                        ] }
+
+        it "should convert rows into columns" do
+            expect(array.my_transpose).to eq(cols)
+        end
+
+        it "should return a 2D-array of the same length" do
+            expect(array.my_transpose.length).to eq(array.length)
+        end
+
+        it "each rows length should remain the same as before" do 
+            bool = array.my_transpose.all? { |row| row.length == array.first.length }
+            expect(bool).to be true
+        end
 
     end
+
+        describe "#stock_picker" do
+
+        
+
+        end
+
+
 end

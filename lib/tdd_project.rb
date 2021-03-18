@@ -20,4 +20,12 @@ class Array
         locations
     end
 
+    def my_transpose
+        (0...self.length).map do |i|
+            self.map { |arr| arr[i] } 
+        end
+    end
+
+    
+
 end
