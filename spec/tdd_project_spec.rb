@@ -85,38 +85,44 @@ describe Array do
 end
 
 describe TowersOfHanoi do 
-    subject(:array) { [[3,2,1],[],[]] }
+    subject(:towers) { TowersOfHanoi.new, :stacks => [[3,2,1],[],[]] }
     let(:wrong) { [[3],[1,2],[]] }
 
     describe "#initialize" do 
-    
-        context "should be called on a 2-D array of 3 sub-arrays" do
-            it "the first sub-array should half 3 numbers of decreasing order" do
-                expect(array.first).to eq(array.first.sort.reverse)
-                expect(array.length).to eq(3)
+        context "creates a stacks attribute " do 
+            context "stacks should be a 2-D array" do
+                it "the first sub-array should have 3, 2, 1 representing discs" do
+                    expect(towers.stacks.first).to eq(towers.stacks.first.sort.reverse)
+                    expect(towers.stacks.length).to eq(3)
+                end
+
+                it "stacks attribute should contain an array of 3 sub-arrays " do
+                    expect(towers.stacks).to eq([[3,2,1],[],[]])
+                end
             end
         end
         
+    end
+    
+    describe "#move" do 
         context "smaller elements can never be below larger elements" do 
             it "should raise error when user tries to put larger element on top of smaller element" do 
-                bool = array.all? { |stack| stack.sort.reverse == stack }
+                bool = towers.stacks.all? { |stack| stack.sort.reverse == stack }
                 expect(bool).to be true 
                 expect { bool == false }.to raise_error(StandardError)
             end
         end
 
-    end
-
-    describe "#move" do 
         it "should prompt the user (gets)"  do 
             expect(:move).to receive(gets.chomp)
         end
     end
-
+    
     describe "#won?" do 
         it "should have a pile of discs on another pole" do 
-            bool = (array[0].empty? && array[1].empty?) || (array[0].empty? && array[2].empty?)
+            bool = (towers.stacks[0].empty? && towers.stacks[1].empty?) || (towers.stacks[0].empty? && towers.stacks[2].empty?)
             expect(bool).to be true 
         end
     end
+
 end
