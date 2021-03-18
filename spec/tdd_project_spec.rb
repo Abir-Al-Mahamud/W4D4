@@ -80,26 +80,43 @@ describe Array do
 
     end
 
-    describe "#towers_of_hanoi" do 
-        subject(:array) { [[3,2,1],[],[]] }
-        let(:wrong) { [[3],[1,2],[]] }
+    
+    
+end
 
+describe TowersOfHanoi do 
+    subject(:array) { [[3,2,1],[],[]] }
+    let(:wrong) { [[3],[1,2],[]] }
+
+    describe "#initialize" do 
+    
         context "should be called on a 2-D array of 3 sub-arrays" do
             it "the first sub-array should half 3 numbers of decreasing order" do
                 expect(array.first).to eq(array.first.sort.reverse)
+                expect(array.length).to eq(3)
             end
         end
-
+        
         context "smaller elements can never be below larger elements" do 
             it "should raise error when user tries to put larger element on top of smaller element" do 
-                stack1 = array[0]
-                stack2 = array[1]
-                stack3 = array[2]
-                
+                bool = array.all? { |stack| stack.sort.reverse == stack }
+                expect(bool).to be true 
+                expect { bool == false }.to raise_error(StandardError)
             end
         end
 
     end
 
+    describe "#move" do 
+        it "should prompt the user (gets)"  do 
+            expect(:move).to receive(gets.chomp)
+        end
+    end
 
+    describe "#won?" do 
+        it "should have a pile of discs on another pole" do 
+            bool = (array[0].empty? && array[1].empty?) || (array[0].empty? && array[2].empty?)
+            expect(bool).to be true 
+        end
+    end
 end
