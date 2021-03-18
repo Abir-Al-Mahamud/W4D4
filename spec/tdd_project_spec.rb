@@ -16,6 +16,33 @@ describe Array do
             expect(array.my_uniq).to_not be(array)
         end
 
+    end
+
+    describe "#two_sum" do
+        let(:array2) { [-1, 0, 2, -2, 1] }
+        
+        it "should find all pairs of positions that sum to 0" do 
+            expect(array2.two_sum).to eq([[0, 4], [2, 3]])
+        end
+
+        it "should sort pairs from smaller index before bigger index" do 
+            expect(array2.two_sum).to eq(array2.two_sum.sort)
+        end
+
+        it "should sort pairs from smaller second elements first" do 
+            expect(array2.two_sum.first).to eq(array2.two_sum.first.sort)
+        end
+
+        it "should not have any duplicate elements" do 
+            array3 = [[0, 4], [1, 1], [2, 3], [3, 2], [4, 0]]
+            expect(array2.two_sum).to_not eq(array3)
+        end
+
+    end
+
+    describe "#my_transpose" do 
+        
+        it ""
 
     end
 end
