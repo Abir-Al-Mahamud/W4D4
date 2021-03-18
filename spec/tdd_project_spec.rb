@@ -80,5 +80,26 @@ describe Array do
 
     end
 
+    describe "#towers_of_hanoi" do 
+        subject(:array) { [[3,2,1],[],[]] }
+        let(:wrong) { [[3],[1,2],[]] }
+
+        context "should be called on a 2-D array of 3 sub-arrays" do
+            it "the first sub-array should half 3 numbers of decreasing order" do
+                expect(array.first).to eq(array.first.sort.reverse)
+            end
+        end
+
+        context "smaller elements can never be below larger elements" do 
+            it "should raise error when user tries to put larger element on top of smaller element" do 
+                stack1 = array[0]
+                stack2 = array[1]
+                stack3 = array[2]
+                
+            end
+        end
+
+    end
+
 
 end
